@@ -208,7 +208,6 @@ h6,
 }
 
 .page-header {
-    margin-bottom: 6rem;
     background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(../img/carousel-1.jpg) center center no-repeat;
     background-size: cover;
 }
@@ -457,3 +456,50 @@ h6,
 .login-icon{
     margin-top: 0.8rem;
 }
+
+/* Add to cart */
+
+.dropdown{
+    border-radius: 10px;
+    border-color: white;
+}
+
+.amount{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+}
+
+.quantity{
+    border-radius: 10px;
+    border-color: black;
+    color: black;
+}
+
+.product-heading{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ratings{
+    height: 2rem;
+    width: 2.8rem;
+    font-size: 14px;
+}
+
+@media screen and (min-width:1200px) and (max-width: 1400px){
+    .card{
+      width: 11.6rem;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width: 1199px){
+    .card{
+      width: 9.8rem;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width: 992px){
+    .card{
+      width: 11rem;
+    }
+}
+/* Add to cart end */

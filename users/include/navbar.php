@@ -22,27 +22,33 @@
                     </div>
                 </div>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
-            </div>
-            <div class=" d-none d-lg-flex">
-                <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
-                    <a href="register.php">
-                    <i class="fa fa-regular fa-user text-light"></i>
-                    </a>
+                <div class=" d-md-flex nav-item pt-4 ps-lg-3">
+                    <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
+                    <i class="fa-solid fa-cart-shopping text-light"></i>
+                    </div>
                 </div>
-                <div class="login-icon ps-3">
-                    <small class="text-primary mb-0">
-                        <?php
-                            if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
-                            {
-                                echo "Hi Guest!";
-                            }
 
-                            else
-                            {
-                                echo "Hi" . " " . $_SESSION["email"] . " !";
-                            }
-                        ?>
-                    </small>
+                <div class=" d-md-flex nav-item pt-4 ps-lg-3">
+                    <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
+                        <a href="register.php">
+                        <i class="fa fa-regular fa-user text-light"></i>
+                        </a>
+                    </div>
+                    <div class="login-icon ps-2">
+                        <small class="text-primary mb-0">
+                            <?php
+                                if(!isset($_SESSION["loggedin"]))
+                                {
+                                    echo "Hi Guest!";
+                                }
+
+                                else
+                                {
+                                    echo "Hi" . " " . $_SESSION["email"] . " !";
+                                }
+                            ?>
+                        </small>
+                    </div>
                 </div>
             </div>
         </div>

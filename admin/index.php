@@ -2,270 +2,17 @@
 <html lang="en">
 
 <!-- Head -->
-<?php include('include/adminHead.php') ?>
+<?php include('includes/adminHead.php') ?>
 <!-- End Head -->
 
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="index.php" class="logo d-flex align-items-center">
-        <span class="d-none d-lg-block">Sweet Factory</span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
-
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
-
-        <li class="nav-item dropdown pe-3">
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Welcome Admin !</span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navigation -->
-
-  </header><!-- End Header -->
+  <?php include('includes/header.php') ?>
+  <!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link " href="adminDashboard.php">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="tables-general.php">
-              <i class="bi bi-circle"></i><span>General Tables</span>
-            </a>
-          </li>
-          <li>
-            <a href="tables-data.php">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Tables Nav -->
-
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="icons-bootstrap.php">
-              <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-remix.php">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-boxicons.php">
-              <i class="bi bi-circle"></i><span>Boxicons</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Icons Nav -->
-
-    </ul>
-
-  </aside><!-- End Sidebar-->
+  <?php include('includes/sidebar.php') ?>
 
   <main id="main" class="main">
 
@@ -273,7 +20,7 @@
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="adminDashboard.php">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
           <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
@@ -499,35 +246,35 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row"><a href="#"><img src="img/product-1.jpg" alt=""></a></th>
+                        <th scope="row"><a href="#"><img src="assets/img/product-1.jpg" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
                         <td>$64</td>
                         <td class="fw-bold">124</td>
                         <td>$5,828</td>
                       </tr>
                       <tr>
-                        <th scope="row"><a href="#"><img src="img/product-2.jpg" alt=""></a></th>
+                        <th scope="row"><a href="#"><img src="assets/img/product-2.jpg" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
                         <td>$46</td>
                         <td class="fw-bold">98</td>
                         <td>$4,508</td>
                       </tr>
                       <tr>
-                        <th scope="row"><a href="#"><img src="img/product-3.jpg" alt=""></a></th>
+                        <th scope="row"><a href="#"><img src="assets/img/product-3.jpg" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
                         <td>$59</td>
                         <td class="fw-bold">74</td>
                         <td>$4,366</td>
                       </tr>
                       <tr>
-                        <th scope="row"><a href="#"><img src="img/product-4.jpg" alt=""></a></th>
+                        <th scope="row"><a href="#"><img src="assets/img/product-4.jpg" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
                         <td>$32</td>
                         <td class="fw-bold">63</td>
                         <td>$2,016</td>
                       </tr>
                       <tr>
-                        <th scope="row"><a href="#"><img src="img/product-5.jpg" alt=""></a></th>
+                        <th scope="row"><a href="#"><img src="assets/img/product-5.jpg" alt=""></a></th>
                         <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
                         <td>$79</td>
                         <td class="fw-bold">41</td>
@@ -792,31 +539,31 @@
 
               <div class="news">
                 <div class="post-item clearfix">
-                  <img src="img/news-1.jpg" alt="">
+                  <img src="assets/img/news-1.jpg" alt="">
                   <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
                   <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="img/news-2.jpg" alt="">
+                  <img src="assets/img/news-2.jpg" alt="">
                   <h4><a href="#">Quidem autem et impedit</a></h4>
                   <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="img/news-3.jpg" alt="">
+                  <img src="assets/img/news-3.jpg" alt="">
                   <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
                   <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="img/news-4.jpg" alt="">
+                  <img src="assets/img/news-4.jpg" alt="">
                   <h4><a href="#">Laborum corporis quo dara net para</a></h4>
                   <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="img/news-5.jpg" alt="">
+                  <img src="assets/img/news-5.jpg" alt="">
                   <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
                   <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
                 </div>
@@ -833,21 +580,11 @@
 
   </main><!-- End #main -->
 
-      <!-- Back to Top -->
-      <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/chart.js/chart.min.js"></script>
-  <script src="vendor/echarts/echarts.min.js"></script>
-  <script src="vendor/quill/quill.min.js"></script>
-  <script src="vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="vendor/tinymce/tinymce.min.js"></script>
-  <script src="vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="js/admin.js"></script>
+  <?php include('includes/js.php') ?>
+  <!-- End Vendor JS Files -->
 
 </body>
 

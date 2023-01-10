@@ -1,5 +1,5 @@
 <?php
-    require_once("include/config.php");
+    require_once("includes/config.php");
 
     // Declare the variables
     $email = $password = $confirm_password = $username = "";
@@ -131,7 +131,7 @@
                 // Try to execute the query
                 if(mysqli_stmt_execute(($stmt)))
                 {
-                    echo "<script>window.location.href='login.php';</script>";
+                    echo "<script>window.location.href='usersindex.php';</script>";
                 }
                 else
                 {
@@ -149,105 +149,66 @@
 <html lang="en">
 
 <!-- Head -->
-<?php include('include/head.php') ?>
+<?php include('includes/adminHead.php') ?>
 <!-- End Head -->
 
 <body>
-    <!-- Spinner Start -->
-    <?php include('include/spinner.php') ?>
-    <!-- Spinner End -->
+    <!-- ======= Header ======= -->
+    <?php include('includes/header.php') ?>
+    <!-- End Header -->
 
-
-    <!-- Topbar Start -->
-    <?php include('include/topbar.php') ?>
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    <?php include('include/navbar.php')?>
-    <!-- Navbar End -->
-
-    <!-- Registration form start -->
-    <div class="container register_form">
-        <div class="row">
-            <div class="register-color-background py-4 text-center col-12">
-                <h2 class="register-color">Welcome to Sweet Factory</h2>
-                <p>Make your app management easy and fun!</p>
-            </div>
-            <div class="col-md-8 offset-md-2 py-2 col-sm-10 offset-sm-1">
+    <!-- ======= Sidebar ======= -->
+    <?php include('includes/sidebar.php') ?> 
+    <!-- End Sidebar -->
+    <!-- Main Content -->
+    <main id="main" class="main">
+        <div class="text-center">
+            <h3>Add users here</h3>
+        </div>
+        <div class="container">
+            <div class="row">
                 <form class="form-block row g-3 py-5" 
                 action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="emailbox" class="form-label">Email</label>
                         <input type="email" class="form-control login-register-box" id="emailbox"
                         placeholder="example@mail.com" name="email">
                         <span class="error">* <?php echo $email_err;?></span>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="passwordbox" class="form-label">Password</label>
                         <input type="password" class="form-control login-register-box" id="passwordbox"
                         placeholder="Enter the password here" name="password">
                         <span class="error">* <?php echo $password_err;?></span>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="confirm_passwordbox" class="form-label">Confirm Password</label>
                         <input type="password" class="form-control login-register-box" id="confirm_passwordbox"
-                        placeholder="Confirm your password here" name="confirm_password">
+                        placeholder="Confirm password here" name="confirm_password">
                         <span class="error">* <?php echo $confirm_password_err;?></span>
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-6">
                         <label for="Usernamebox" class="form-label">Username</label>
                         <input type="text" class="form-control login-register-box" id="Usernamebox" 
-                        placeholder="Enter your username here" name="username">
+                        placeholder="Enter username here" name="username">
                         <span class="error">* <?php echo $username_err;?></span>
                     </div>
-                    <div class="col-12 d-grid gap-2 pt-3">
-                        <button type="submit" class="form-label btn btn-outline-light login-register-box">Create Account</button>
-                    </div>
-                    <div class="col-12 text-start mt-4">
-                        <div class="terms_and_conditions_div">
-                            <p class="form-label terms_and_conditions">By creating an account or logging in, you agree to 
-                            our 
-                            <a href="" class="text-light register-links">Conditions of Use</a>
-                            and
-                            <a href="" class="text-light register-links">Privacy Policy.</a></p>
-                            <hr class="text-light">
-                            <div class="text-center">
-                            <p class="form-label terms_and_conditions">Already have an account? <a href="login.php" class="text-light register-links">Sign in.</a></p>
-                            </div>
-                        </div>
+                    <div class="col-12 pt-3 text-center">
+                        <a href="usersindex.php" class="form-label btn btn-warning login-register-box">Back</a>
+                        <button type="submit" class="form-label btn btn-success login-register-box ms-2">Add User</button>
                     </div>
                 </form>
             </div>
-        </div>
     </div>
-    <!-- Registration form end -->
+    </main>
+    <!-- End Main Content -->
 
-    <!-- Footer Start -->
-    <?php include('include/footer.php') ?>
-    <!-- Footer End -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+    <!-- Vendor JS Files -->
+    <?php include('includes/js.php') ?>
+    <!-- End Vendor JS Files -->
 
-    <!-- Copyright Start -->
-    <?php include('include/copyright.php') ?>
-    <!-- Copyright End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
 </body>
 
 </html>

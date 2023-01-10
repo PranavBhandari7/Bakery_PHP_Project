@@ -2,7 +2,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "Pranav_1234";
-    $dbname = "bakeryManagementPHP";
+    $dbname = "bakerymanagement";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

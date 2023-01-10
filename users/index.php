@@ -25,7 +25,7 @@
     <div class="container-fluid p-0 pb-5 wow fadeIn" data-wow-delay="0.1s">
         <div class="owl-carousel header-carousel position-relative">
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="img/carousel-1.jpg" alt="">
+                <img class="img-fluid" src="assets/img/carousel-1.jpg" alt="">
                 <div class="owl-carousel-inner">
                     <div class="container">
                         <div class="row justify-content-start">
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="img/carousel-2.jpg" alt="">
+                <img class="img-fluid" src="assets/img/carousel-2.jpg" alt="">
                 <div class="owl-carousel-inner">
                     <div class="container">
                         <div class="row justify-content-start">
@@ -104,10 +104,10 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="row img-twice position-relative h-100">
                         <div class="col-6">
-                            <img class="img-fluid rounded" src="img/about-1.jpg" alt="">
+                            <img class="img-fluid rounded" src="assets/img/about-1.jpg" alt="">
                         </div>
                         <div class="col-6 align-self-end">
-                            <img class="img-fluid rounded" src="img/about-2.jpg" alt="">
+                            <img class="img-fluid rounded" src="assets/img/about-2.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -155,7 +155,7 @@
                             <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="img/product-1.jpg" alt="">
+                            <img class="img-fluid" src="assets/img/product-1.jpg" alt="">
                             <div class="product-overlay">
                                 <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i class="fa fa-eye text-primary"></i></a>
                             </div>
@@ -170,7 +170,7 @@
                             <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="img/product-2.jpg" alt="">
+                            <img class="img-fluid" src="assets/img/product-2.jpg" alt="">
                             <div class="product-overlay">
                                 <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i class="fa fa-eye text-primary"></i></a>
                             </div>
@@ -185,7 +185,7 @@
                             <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
                         </div>
                         <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="img/product-3.jpg" alt="">
+                            <img class="img-fluid" src="assets/img/product-3.jpg" alt="">
                             <div class="product-overlay">
                                 <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i class="fa fa-eye text-primary"></i></a>
                             </div>
@@ -248,10 +248,10 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="row img-twice position-relative h-100">
                         <div class="col-6">
-                            <img class="img-fluid rounded" src="img/service-1.jpg" alt="">
+                            <img class="img-fluid rounded" src="assets/img/service-1.jpg" alt="">
                         </div>
                         <div class="col-6 align-self-end">
-                            <img class="img-fluid rounded" src="img/service-2.jpg" alt="">
+                            <img class="img-fluid rounded" src="assets/img/service-2.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -271,7 +271,7 @@
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="team-item text-center rounded overflow-hidden">
-                        <img class="img-fluid" src="img/team-1.jpg" alt="">
+                        <img class="img-fluid" src="assets/img/team-1.jpg" alt="">
                         <div class="team-text">
                             <div class="team-title">
                                 <h5>Full Name</h5>
@@ -287,7 +287,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="team-item text-center rounded overflow-hidden">
-                        <img class="img-fluid" src="img/team-2.jpg" alt="">
+                        <img class="img-fluid" src="assets/img/team-2.jpg" alt="">
                         <div class="team-text">
                             <div class="team-title">
                                 <h5>Full Name</h5>
@@ -303,7 +303,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="team-item text-center rounded overflow-hidden">
-                        <img class="img-fluid" src="img/team-3.jpg" alt="">
+                        <img class="img-fluid" src="assets/img/team-3.jpg" alt="">
                         <div class="team-text">
                             <div class="team-title">
                                 <h5>Full Name</h5>
@@ -319,7 +319,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="team-item text-center rounded overflow-hidden">
-                        <img class="img-fluid" src="img/team-4.jpg" alt="">
+                        <img class="img-fluid" src="assets/img/team-4.jpg" alt="">
                         <div class="team-text">
                             <div class="team-title">
                                 <h5>Full Name</h5>
@@ -349,7 +349,7 @@
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="testimonial-item bg-white rounded p-4">
                     <div class="d-flex align-items-center mb-4">
-                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/testimonial-1.jpg" alt="">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="assets/img/testimonial-1.jpg" alt="">
                         <div class="ms-4">
                             <h5 class="mb-1">Client Name</h5>
                             <span>Profession</span>
@@ -359,7 +359,7 @@
                 </div>
                 <div class="testimonial-item bg-white rounded p-4">
                     <div class="d-flex align-items-center mb-4">
-                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/testimonial-2.jpg" alt="">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="assets/img/testimonial-2.jpg" alt="">
                         <div class="ms-4">
                             <h5 class="mb-1">Client Name</h5>
                             <span>Profession</span>
@@ -369,7 +369,7 @@
                 </div>
                 <div class="testimonial-item bg-white rounded p-4">
                     <div class="d-flex align-items-center mb-4">
-                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/testimonial-3.jpg" alt="">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="assets/img/testimonial-3.jpg" alt="">
                         <div class="ms-4">
                             <h5 class="mb-1">Client Name</h5>
                             <span>Profession</span>
@@ -379,7 +379,7 @@
                 </div>
                 <div class="testimonial-item bg-white rounded p-4">
                     <div class="d-flex align-items-center mb-4">
-                        <img class="flex-shrink-0 rounded-circle border p-1" src="img/testimonial-4.jpg" alt="">
+                        <img class="flex-shrink-0 rounded-circle border p-1" src="assets/img/testimonial-4.jpg" alt="">
                         <div class="ms-4">
                             <h5 class="mb-1">Client Name</h5>
                             <span>Profession</span>
@@ -408,16 +408,9 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <?php include('include/js.php') ?>
+    <!-- End JavaScript Libraries -->
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
 </body>
 
 </html>
