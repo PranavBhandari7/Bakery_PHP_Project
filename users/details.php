@@ -61,10 +61,6 @@
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque sed ducimus odit similique asperiores rem quia in 
                         voluptatem officiis pariatur natus nisi consectetur suscipit, enim nostrum ipsam deleniti fugit ad.</p>
                     </div>
-                    <div>
-                        <h4>Available Offers</h4>
-                        <p>None</p>
-                    </div>
                 </div>
             </div>
         </div>

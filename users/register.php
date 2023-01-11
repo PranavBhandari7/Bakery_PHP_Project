@@ -8,21 +8,18 @@
     // Check if the request method is post
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        if (isset($_POST['email']) && isset($_POST['password'])  
-            && isset($_POST['confirm_password']) && isset($_POST['username'])) 
+
+        function validate($data)
         {
-          function validate($data)
-          {
-    
+
             $data = trim($data);
-       
+        
             $data = stripslashes($data);
         
             $data = htmlspecialchars($data);
         
             return $data;
-          }
-        }
+            }
 
         if(empty($_POST["email"]))
         {

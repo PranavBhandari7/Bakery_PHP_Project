@@ -24,14 +24,20 @@
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
                 <div class=" d-md-flex nav-item pt-4 ps-lg-3">
                     <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
-                    <i class="fa-solid fa-cart-shopping text-light"></i>
+                    <span class="icons ps-2 me-2" data-bs-toggle="tooltip" 
+                        data-bs-placement="bottom" title="Add to cart">
+                        <i class="fa-solid fa-cart-shopping text-light"></i>
+                    </span>
                     </div>
                 </div>
 
                 <div class=" d-md-flex nav-item pt-4 ps-lg-3">
                     <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
                         <a href="register.php">
+                        <span class="icons ps-2 me-2" data-bs-toggle="tooltip" 
+                        data-bs-placement="bottom" title="Login or Sign Up">
                         <i class="fa fa-regular fa-user text-light"></i>
+                        </span>
                         </a>
                     </div>
                     <div class="login-icon ps-2">

@@ -39,17 +39,9 @@
     <!-- Filters Start -->
     <div class="bg-warning py-3">
         <div class="container">
-            <div class="row d-flex justify-content-center">
+            <div class="row">
                 <div class="col-3 text-start">
                     <h4 class="text-light">Filter:</h4>
-                </div>
-                <div class="col-3">
-                    <label for="product" class="text-light">Product Type:</label>
-                    <select class="form-label dropdown py-2 px-2 ms-2" id="product">
-                    <option value="">Select</option>
-                    <option value="">Egg</option>
-                    <option value="">Eggless</option>
-                    </select>
                 </div>
                 <div class="col-3">
                     <label for="categories" class="text-light">Category:</label>

@@ -10,3 +10,10 @@
 <!-- Template Javascript -->
 <script src="assets/js/main.js"></script>
 <!-- End Template Javascript -->
+
+<script>
+    const tooltips = document.querySelectorAll('.icons')
+    tooltips.forEach(t => {
+        new bootstrap.Tooltip(t)
+    })
+</script>
