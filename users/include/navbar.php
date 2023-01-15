@@ -35,7 +35,7 @@
                     <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
                         <a href="register.php">
                         <span class="icons ps-2 me-2" data-bs-toggle="tooltip" 
-                        data-bs-placement="bottom" title="Login or Sign Up">
+                        data-bs-placement="bottom" title="Login or Sign Up here">
                         <i class="fa fa-regular fa-user text-light"></i>
                         </span>
                         </a>

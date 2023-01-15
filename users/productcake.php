@@ -58,88 +58,37 @@
 
     <!-- Add to cart start -->
     <main class="bg-light" style="margin: 12rem 0;">
-        <div class="container" style="padding:7rem 0rem">
-            <div class="row g-3">
+        <div class='container' style='padding:7rem 0rem'>
+                <div class='row g-3'>
+                <?php
+                    include("include/config.php");
+                    $query = "SELECT * from products";
+                    $passQuery = mysqli_query($conn, $query);
+                    if ($passQuery->num_rows > 0)
+                    {
+                        while ($rows = $passQuery->fetch_assoc())
+                        {
+                            echo "<div class='col-lg-2 col-md-3 col-sm-4 p-0'>
+                                        <div class='card'>
+                                            <img src='/backendImages/$rows[pro_image]' 
+                                            class='card-img-top img-fluid' style='height:130px' alt='...'>
+                                            <div class='card-body'>
+                                                <h5>$rows[product_name]</h5>
+                                                <p class='mt-4' style='display:inline-block'>₹$rows[pro_price]</p>
+                                                <a href='details.php' target='_blank' class='btn btn-outline-warning ms-xl-5 ms-sm-3'>Add</a>
+                                            </div>
+                                        </div>
+                                    </div>";
+                        }
+                    }
 
-                <div class="col-lg-2 col-md-3 col-sm-4 p-0">
-                    <div class="card">
-                        <img src="assets/img/product-1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h6>Product 1</h6>
-                            <p style="display:inline-block">₹5.68</p>
-                            <a href="details.php" target="_blank" class="btn btn-outline-warning ms-xl-5 ms-sm-3">Add</a>
-                        </div>
-                    </div>
+                    else 
+                    {
+                        $conn->error;
+                    }
+                ?>
                 </div>
-
-                <div class="col-lg-2 col-md-3 col-sm-4 p-0">
-                    <div class="card">
-                        <img src="assets/img/product-2.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h6>Product 2</h6>
-                            <p style="display:inline-block">₹5.68</p>
-                            <a href="details.php" target="_blank" class="btn btn-outline-warning ms-xl-5 ms-sm-3">Add</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-3 col-sm-4 p-0">
-                    <div class="card">
-                        <img src="assets/img/product-3.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h6>Product 3</h6>
-                            <p style="display:inline-block">₹5.68</p>
-                            <a href="details.php" target="_blank" class="btn btn-outline-warning ms-xl-5 ms-sm-3">Add</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-3 col-sm-4 p-0">
-                    <div class="card">
-                        <img src="assets/img/product-1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h6>Product 4</h6>
-                            <p style="display:inline-block">₹5.68</p>
-                            <a href="details.php" target="_blank" class="btn btn-outline-warning ms-xl-5 ms-sm-3">Add</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-3 col-sm-4 p-0">
-                    <div class="card">
-                        <img src="assets/img/product-2.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h6>Product 5</h6>
-                            <p style="display:inline-block">₹5.68</p>
-                            <a href="details.php" target="_blank" class="btn btn-outline-warning ms-xl-5 ms-sm-3">Add</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-3 col-sm-4 p-0">
-                    <div class="card">
-                        <img src="assets/img/product-3.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h6>Product 6</h6>
-                            <p style="display:inline-block">₹5.68</p>
-                            <a href="details.php" target="_blank" class="btn btn-outline-warning ms-xl-5 ms-sm-3">Add</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-3 col-sm-4 p-0">
-                    <div class="card">
-                        <img src="assets/img/product-1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h6>Product 7</h6>
-                            <p style="display:inline-block">₹5.68</p>
-                            <a href="details.php" target="_blank" class="btn btn-outline-warning ms-xl-5 ms-sm-3">Add</a>
-                        </div>
-                    </div>
-                </div>
-                
             </div>
-        </div>
     </main>
     <!-- Add to cart end -->
 

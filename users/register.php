@@ -1,144 +1,132 @@
 <?php
+    session_start();
     require_once("include/config.php");
 
     // Declare the variables
     $email = $password = $confirm_password = $username = "";
     $email_err = $password_err = $confirm_password_err = $username_err = "";
 
-    // Check if the request method is post
-    if($_SERVER["REQUEST_METHOD"] == "POST")
+    // Check if the user is already logged in
+    if(isset($_SESSION["email"]))
     {
+        echo "<script>window.location.href='login.php';</script>";
+        exit;
+    }
 
-        function validate($data)
+    // Check if the request method is post
+    else if(!isset($_SESSION["email"]))
+    {
+        if($_SERVER["REQUEST_METHOD"] == "POST")
         {
-
-            $data = trim($data);
-        
-            $data = stripslashes($data);
-        
-            $data = htmlspecialchars($data);
-        
-            return $data;
-            }
-
-        if(empty($_POST["email"]))
-        {
-            $email_err = "email cannot be blank";
-        }
-        // Check if e-mail address is well-formed
-        else if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
-        {
-            $email_err = "Invalid email format";
-        }
-
-        else 
-        {   // Else, if there are no errors in the email then
-            $sql = "SELECT user_id FROM users WHERE email = ?";
-            $stmt = mysqli_prepare($conn,$sql);
-            if($stmt)
+    
+            function validate($data)
             {
-                //param_email is the variable which we will use to bind the statement
-                mysqli_stmt_bind_param($stmt,"s",$param_email);
-
-                //  Set the value of the param_email
-                $param_email = validate($_POST["email"]);
-                //  $param_email = validate(stripslashes(htmlspecialchars($_POST["email"])));
-
-                //  Try to execute this statement
-                if(mysqli_stmt_execute($stmt))
+    
+                $data = trim($data);
+            
+                $data = stripslashes($data);
+            
+                $data = htmlspecialchars($data);
+            
+                return $data;
+            }
+    
+            if(empty($_POST["email"]))
+            {
+                $email_err = "email cannot be blank";
+            }
+            // Check if e-mail address is well-formed
+            else if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL))
+            {
+                $email_err = "Invalid email format";
+            }
+    
+            else 
+            {  
+                $email = validate($_POST["email"]);
+    
+                $sql = "SELECT * FROM users WHERE email='$email'";
+    
+                $query = mysqli_query($conn,$sql);
+    
+                if (mysqli_num_rows($query) > 0) 
+                {               
+                    $email_err = "email already exists";
+                }
+            }
+    
+            // Now Check for password
+            if(empty($_POST["password"]))
+            {
+                $password_err = "Password cannot be blank";
+            }
+    
+            else if(strlen(validate($_POST["password"])) < 5)
+            {
+                $password_err = "Password cannot be less than 5 characters";
+            } 
+    
+            else
+                $password = validate($_POST["password"]);
+    
+            // Now Check for confirm password field
+            if(validate($_POST["confirm_password"])!= validate($_POST["password"])){
+                $password_err = "Password does not match";
+            }
+    
+            // Now Check for username field
+            if (empty($_POST["username"])) 
+            {
+                $username_err = "Username is required";
+            }
+            
+            // Check if name only contains letters and whitespace
+            else if (!preg_match("/^[a-zA-Z-' ]*$/",$_POST["username"])) 
+            {
+                $username_err = "Only letters and white spaces allowed";
+            }
+    
+            else
+            {
+                $username = validate($_POST["username"]);
+            }
+    
+            // If there were no errors and the passwords match then go ahead and insert into the database
+            if(empty($email_err) && empty($password_err) 
+                && empty($confirm_Password_err) && empty($username_err))
+            {
+    
+                // Create the INSERT statement
+                $sql = "INSERT INTO users (username, email, password) VALUES (? , ? , ?)";
+    
+                // After the statement is created then use the prepare the statement
+                $stmt = mysqli_prepare($conn,$sql);
+    
+                if($stmt)
                 {
-                    mysqli_stmt_store_result($stmt);
-
-                    if(mysqli_stmt_num_rows($stmt) == 1)
+                    mysqli_stmt_bind_param($stmt,"sss", 
+                    $param_username,$param_email,$param_password);
+    
+                    // Set these parametres
+                    $param_username = $username;
+                    $param_email = $email;
+                    $param_password = password_hash($password, PASSWORD_DEFAULT);
+                    
+                    // Try to execute the query
+                    if(mysqli_stmt_execute(($stmt)))
                     {
-                        $email_err = "This email already exists";
+                        echo "<script>window.location.href='login.php';</script>";
                     }
-                    // If everything is fine then set the $email with the POST value
                     else
                     {
-                        $email = validate($_POST["email"]);
+                        echo "Something went wrong... cannot redirect";
                     }
                 }
-                // If any problem executing the statement then display the error message
-                else
-                {
-                    echo "something went wrong";
-                }
+                mysqli_stmt_close($stmt);
             }
-            mysqli_stmt_close($stmt);
+                mysqli_close($conn);
         }
-
-        // Now Check for password
-        if(empty($_POST["password"]))
-        {
-            $password_err = "Password cannot be blank";
-        }
-
-        else if(strlen(validate($_POST["password"])) < 5)
-        {
-            $password_err = "Password cannot be less than 5 characters";
-        } 
-
-        else
-            $password = validate($_POST["password"]);
-
-        // Now Check for confirm password field
-        if(validate($_POST["confirm_password"])!= validate($_POST["password"])){
-            $password_err = "Password does not match";
-        }
-
-        // Now Check for username field
-        if (empty($_POST["username"])) 
-        {
-            $username_err = "Username is required";
-        }
-        
-        // Check if name only contains letters and whitespace
-        else if (!preg_match("/^[a-zA-Z-' ]*$/",$_POST["username"])) 
-        {
-            $username_err = "Only letters and white spaces allowed";
-        }
-
-        else
-        {
-            $username = validate($_POST["username"]);
-        }
-
-        // If there were no errors and the passwords match then go ahead and insert into the database
-        if(empty($username_err) && empty($password_err) 
-            && empty($confirm_Password_err) && empty($username_err))
-        {
-
-            // Create the INSERT statement
-            $sql = "INSERT INTO users (username, email, password) VALUES (? , ? , ?)";
-
-            // After the statement is created then use the prepare the statement
-            $stmt = mysqli_prepare($conn,$sql);
-
-            if($stmt)
-            {
-                mysqli_stmt_bind_param($stmt,"sss", 
-                $param_username,$param_email,$param_password);
-
-                // Set these parametres
-                $param_username = $username;
-                $param_email = $email;
-                $param_password = password_hash($password, PASSWORD_DEFAULT);
-                
-                // Try to execute the query
-                if(mysqli_stmt_execute(($stmt)))
-                {
-                    echo "<script>window.location.href='login.php';</script>";
-                }
-                else
-                {
-                    echo "Something went wrong... cannot redirect";
-                }
-            }
-            mysqli_stmt_close($stmt);
-        }
-            mysqli_close($conn);
-    }
+    } 
 
 ?>
 
@@ -176,7 +164,7 @@
                 action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                     <div class="col-md-12">
                         <label for="emailbox" class="form-label">Email</label>
-                        <input type="email" class="form-control login-register-box" id="emailbox"
+                        <input type="text" class="form-control login-register-box" id="emailbox"
                         placeholder="example@mail.com" name="email">
                         <span class="error">* <?php echo $email_err;?></span>
                     </div>

@@ -64,7 +64,8 @@
                             // This means the password is correct Allow user to login
                             session_start();
                             $_SESSION["id"] = $user_id;
-                            $_SESSION["email"] = $email ;
+                            $_SESSION["email"] = $email;
+                            $_SESSION["username"] = $username;
                             $_SESSION["loggedin"] = true;
 
                             // Redirect the user to the welcome page
