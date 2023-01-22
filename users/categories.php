@@ -51,7 +51,7 @@
                                         <div class='card'>
                                             <img src='/backendImages/$rows[pro_image]' 
                                             class='card-img-top img-fluid' style='height:130px' alt='...'>
-                                            <div class='card-body'>
+                                            <div class='card-body text-center'>
                                                 <h5>$rows[product_name]</h5>
                                                 <p class='mt-4' style='display:inline-block'>₹$rows[pro_price]</p>
                                                 <a href='details.php' target='_blank' class='btn btn-outline-warning ms-xl-5 ms-sm-3'>Add</a>

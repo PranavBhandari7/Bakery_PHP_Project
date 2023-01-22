@@ -3,8 +3,8 @@
     require_once("includes/config.php");
 
     // Declare the variables
-    $name = $price = $description = $image = "";
-    $name_err = $price_err = $description_err = $image_err = "";
+    $name = $price = $description = $image = $category = "";
+    $name_err = $price_err = $description_err = $image_err = $category_err = "";
 
     // Check if the request method is post
     if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -71,57 +71,42 @@
             $target_dir = "/Users/pranavbhandari/Documents/GitHub/Bakery_PHP_Project/backendImages/";
             $target_file = $target_dir . basename($image);
 
-            $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
             $check = getimagesize($tempname);
 
-            if ($check !== false) 
+            if ($check == false) 
             {
-                echo "File is an image - " . $check["mime"] . ".";
-                $uploadOk = 1;
+                $image_err =  "File is not an image.";
             } 
-            else 
-            {
-                echo "File is not an image.";
-                $uploadOk = 0;
-            }
 
-            if (file_exists($target_file)) 
+            else if (file_exists($target_file)) 
             {
-                echo "Sorry, file already exists.";
-                $uploadOk = 0;
+                $image_err =  "Sorry, file already exists. Please select another file";
             }
-            if ($_FILES["image"]["size"] > 500000) 
+            else if ($_FILES["image"]["size"] > 5000000) 
             {
-                echo "Sorry, your file is too large.";
-                $uploadOk = 0;
+                $image_err =  "Sorry, your file is too large.";
             }
-            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") 
+            else if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") 
             {
-                echo "Sorry, only JPG, JPEG, PNG files are allowed.";
-                $uploadOk = 0;
+                $image_err =  "Sorry, only JPG, JPEG, PNG files are allowed.";
             }
         
-            if ($uploadOk == 0) 
-            {
-                echo "Sorry, your file was not uploaded.";
-                // if everything is ok, try to upload file
-            } 
-            else 
+            else
             {
                 if (move_uploaded_file($tempname, $target_file)) 
                 {
-                    echo "The file " . htmlspecialchars(basename($image)) . " has been uploaded.";
+                    $image_err = "";
                 } 
                 else 
                 {
-                    echo "Sorry, there was an error uploading your file.";
+                    $image_err =  "Sorry, there was an error uploading your file.";
                 }
             }
         }
 
         if(empty($name_err) && empty($price_err) 
-            && empty($description_err) && empty($image_err))
+            && empty($description_err) && empty($image_err) && empty($category_err))
         {
             // Create the INSERT statement
             $sql = "INSERT INTO  `products` (`product_name`, `pro_des`, `pro_image`, `pro_price`) 
@@ -177,18 +162,34 @@
                 <span class="error">* <?php echo $price_err;?></span>
             </div>
 
-            <!-- <div class="col-md-6">
-                <label for="category-type" class="form-label">Category Type</label>
-                <input type="text" class="form-control" 
-                id="category-type" name="description">
-                <span class="error">* <?php echo $description_err;?></span>
-            </div> -->
-
             <div class="col-md-6">
                 <label for="product-description" class="form-label">Product Description</label>
                 <textarea class="form-control" 
                 id="product-description" name="description"></textarea>
                 <span class="error">* <?php echo $description_err;?></span>
+            </div>
+
+            <div class="col-md-6">
+                <label for="category-type" class="form-label">Category</label>
+                <select class="me-2 form-control" name="category">
+                        <option value="">Select Category</option>
+                        <?php
+                            $query = "SELECT * from products";
+                            $passQuery = mysqli_query($conn, $query);
+                            if ($passQuery->num_rows > 0)
+                            {
+                                while ($rows = $passQuery->fetch_assoc())
+                                {
+                                    echo"
+                                    <option value=''>Preparing</option>
+                                    <option value=''>Delivered</option>
+                                    <option value=''>Cancelled</option>
+                                    <option value=''>Rejected</option>";
+                                }
+                            }
+                        ?>
+                    </select>
+                <span class="error">* <?php echo $category_err;?></span>
             </div>
 
             <div class="col-md-12">
