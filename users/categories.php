@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,48 +28,24 @@
     <div class="container-fluid page-header py-6 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center pt-5 pb-3">
             <h1 class="display-4 text-white animated slideInDown mb-3">Products</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-primary active" aria-current="page">Products</li>
-                </ol>
-            </nav>
         </div>
     </div>
     <!-- Page Header End -->
-
-    <!-- Filters Start -->
-    <div class="bg-warning py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-3 text-start">
-                    <h4 class="text-light">Filter:</h4>
-                </div>
-                <div class="col-3">
-                    <label for="categories" class="text-light">Category:</label>
-                    <select class="form-label dropdown py-2 px-2 ms-2" id="categories">
-                    <option value="">Select</option>
-                    <option value="">Pastries</option>
-                    <option value="">Cakes</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Filters End -->
-
+    
     <!-- Add to cart start -->
     <main class="bg-light" style="margin: 12rem 0;">
         <div class='container' style='padding:7rem 0rem'>
                 <div class='row g-3'>
                 <?php
                     include("include/config.php");
-                    $query = "SELECT * from products";
-                    $passQuery = mysqli_query($conn, $query);
-                    if ($passQuery->num_rows > 0)
+                    $id = $_GET["id"];
+                    $query = "SELECT pro_image, product_name, pro_price FROM products 
+                    INNER JOIN categories ON products.category_id = categories.category_id 
+                    WHERE categories.category_id = $id";
+                    $result = mysqli_query($conn, $query);
+                    if ($result->num_rows > 0)
                     {
-                        while ($rows = $passQuery->fetch_assoc())
+                        while ($rows = $result->fetch_assoc())
                         {
                             echo "<div class='col-lg-2 col-md-3 col-sm-4 p-0'>
                                         <div class='card'>

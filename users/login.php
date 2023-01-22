@@ -1,6 +1,7 @@
 <?php
     // Start the session
-    if(!isset($_SESSION["email"])){ 
+    if(!isset($_SESSION["email"]))
+    { 
         session_start();
     }
 
@@ -65,11 +66,14 @@
                             session_start();
                             $_SESSION["id"] = $user_id;
                             $_SESSION["email"] = $email;
-                            $_SESSION["username"] = $username;
                             $_SESSION["loggedin"] = true;
 
-                            // Redirect the user to the welcome page
                             echo "<script>window.location.href='index.php';</script>";
+
+                        }
+                        else
+                        {
+                            $err =  "Password does not match";
                         }
                     }
                 }

@@ -1,3 +1,4 @@
+<?php  require_once("includes/sessionstatus.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,27 +18,33 @@
     <!-- Main Content -->
     <main id="main" class="main">
         <div class="text-center mb-4">
-            <h2>Users data</h2>
+            <h2>Customers Feedback</h2>
         </div>
         <table class="table table-bordered">
             <thead class="bg-primary text-light">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Email</th>
+                <tr class="text-center">
+                    <th scope="col">No</th>
                     <th scope="col">Username</th>
+                    <th scope="col">Ratings</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Date</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                     include("includes/config.php");
-                    $query = "SELECT * from users";
+                    $query = "SELECT feedback.feedback_id,users.username,feedback.ratings,
+                    feedback.message,feedback.feedback_date FROM users INNER JOIN feedback
+                    ON users.user_id = feedback.user_id";
                     $passQuery = mysqli_query($conn, $query);
                     if ($passQuery->num_rows > 0){
                         while ($rows = $passQuery->fetch_assoc()){
                         echo "<tr>
-                                <td>$rows[user_id]</td>
-                                <td>$rows[email]</td>
+                                <td>$rows[feedback_id]</td>
                                 <td>$rows[username]</td>
+                                <td>$rows[ratings]</td>
+                                <td>$rows[message]</td>
+                                <td>$rows[feedback_date]</td>
                             </tr>";
                         }
                     }

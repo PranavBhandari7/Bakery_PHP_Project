@@ -1,3 +1,4 @@
+<?php  require_once("includes/sessionstatus.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,11 +19,8 @@
     <main id="main" class="main">
         <div class="text-center mb-4">
             <div class="row">
-                <div class="col-md-6 text-center">
+                <div class="col-md-12 text-center">
                     <h2>Products data</h2>
-                </div>
-                <div class="col-md-6">
-                    <a href="createproducts.php" class="btn btn-outline-success">Create New Product</a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
-<?php  require_once("includes/sessionstatus.php"); ?>
 <?php
+    require_once("includes/sessionstatus.php");
     require_once("includes/config.php");
 
     // Declare the variables
@@ -160,47 +160,26 @@
     <!-- End Sidebar -->
     
     <main id="main" class="main">
-        <h3>Add Products Here</h3>
+        <h3>Add Categories Here</h3>
         <form class="row g-3 mt-4" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"
         enctype="multipart/form-data" method="post">
-            <div class="col-md-6">
-                <label for="product-name" class="form-label">Product Name</label>
+            <div class="col-md-12">
+                <label for="category-name" class="form-label">Category Name</label>
                 <input type="text" class="form-control" name="name"
-                id="product-name" placeholder="Write product name here">
+                id="category-name" placeholder="Enter category name here">
                 <span class="error">* <?php echo $name_err;?></span>
             </div>
 
-            <div class="col-md-6">
-                <label for="product-price" class="form-label">Product Price</label>
-                <input type="text" class="form-control" name="price"
-                id="product-price" placeholder="Write product price here">
-                <span class="error">* <?php echo $price_err;?></span>
-            </div>
-
-            <!-- <div class="col-md-6">
-                <label for="category-type" class="form-label">Category Type</label>
-                <input type="text" class="form-control" 
-                id="category-type" name="description">
-                <span class="error">* <?php echo $description_err;?></span>
-            </div> -->
-
-            <div class="col-md-6">
-                <label for="product-description" class="form-label">Product Description</label>
-                <textarea class="form-control" 
-                id="product-description" name="description"></textarea>
-                <span class="error">* <?php echo $description_err;?></span>
-            </div>
-
             <div class="col-md-12">
-                <label for="product-image" class="form-label">Add Product Image</label>
+                <label for="inputAddress" class="form-label">Add Product Image</label>
                 <input type="file" class="form-control" 
-                name="image" id="product-image">
+                name="image" id="inputAddress">
                 <span class="error">* <?php echo $image_err;?></span>
             </div>
 
             <div class="col-md-12 text-center">
-                <a href="products.php" class="btn btn-warning">Back</a>
-                <button type="submit" class="btn btn-success">Add Product</button>
+                <a href="categories.php" class="btn btn-warning">Back</a>
+                <button type="submit" class="btn btn-success">Create Category</button>
             </div>
         </form>
     </main>

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,13 +28,6 @@
     <div class="container-fluid page-header py-6 wow fadeIn" data-wow-delay="0.1s">
         <div class="container text-center pt-5 pb-3">
             <h1 class="display-4 text-white animated slideInDown mb-3">Products</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-primary active" aria-current="page">Products</li>
-                </ol>
-            </nav>
         </div>
     </div>
     <!-- Page Header End -->
@@ -39,57 +35,38 @@
 
     <!-- Product Start -->
     <div class="container-xxl bg-light my-6 py-6 pt-0" style="margin: 12rem 0;">
-        <div class="container">
+        <div class="container pt-5">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <p class="text-primary text-uppercase mb-2">// Bakery Products</p>
                 <h1 class="display-6 mb-4">Explore The Categories Of Our Bakery Products</h1>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
-                        <div class="text-center p-4">
-                            <div class="d-inline-block border border-primary rounded-pill px-3 mb-3">$11 - $99</div>
-                            <h3 class="mb-3">Cake</h3>
-                            <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
-                        </div>
-                        <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="assets/img/product-1.jpg" alt="">
-                            <div class="product-overlay">
-                                <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i class="fa fa-eye text-primary"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
-                        <div class="text-center p-4">
-                            <div class="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">$11 - $99</div>
-                            <h3 class="mb-3">Bread</h3>
-                            <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
-                        </div>
-                        <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="assets/img/product-2.jpg" alt="">
-                            <div class="product-overlay">
-                                <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i class="fa fa-eye text-primary"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
-                        <div class="text-center p-4">
-                            <div class="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">$11 - $99</div>
-                            <h4 class="mb-3">Cookies</h4>
-                            <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
-                        </div>
-                        <div class="position-relative mt-auto">
-                            <img class="img-fluid" src="assets/img/product-3.jpg" alt="">
-                            <div class="product-overlay">
-                                <a class="btn btn-lg-square btn-outline-light rounded-circle" href=""><i class="fa fa-eye text-primary"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                    include("include/config.php");
+                    $query = "SELECT * from categories";
+                    $result = mysqli_query($conn, $query);
+                    if ($result->num_rows > 0)
+                    {
+                        while ($rows = $result->fetch_assoc())
+                        {
+                            echo "<div class='col-lg-4 col-md-6 wow fadeInUp' data-wow-delay='0.1s'>
+                                    <div class='product-item d-flex flex-column bg-white rounded overflow-hidden h-100'>
+                                        <div class='text-center p-4'>
+                                            <h3 class='mb-3'>$rows[category_name]</h3>
+                                            <span>Hover on the image to explore our categories</span>
+                                        </div>
+                                        <div class='position-relative mt-auto'>
+                                            <img class='img-fluid' src='assets/img/product-1.jpg' alt=''>
+                                            <div class='product-overlay'>
+                                                <a class='btn btn-lg-square btn-outline-light rounded-circle' href='categories.php?id=$rows[category_id]'>
+                                                <i class='fa fa-eye text-primary'></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>";
+                        }
+                    }                    
+                ?>
             </div>
         </div>
     </div>

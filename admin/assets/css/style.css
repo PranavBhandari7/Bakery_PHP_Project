@@ -1258,3 +1258,41 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+/* Registration form */
+
+.register-color-background{
+  background-color: white;
+  border: 1px solid #1E1916;
+}
+
+.error {
+  color: #FF0000;
+}
+
+.register_form{
+  margin-top: 14rem !important;
+  background-color: #1E1916;
+  margin: auto;
+  width: 49%;
+}
+
+.register-color{
+  color: #EAA636;
+}
+
+.terms_and_conditions{
+  font-size: 14px;
+}
+
+.register-links{
+  text-decoration: underline;
+}
+
+.login-register-box{
+  border-radius: 0px;
+}
+
+.login-icon{
+  margin-top: 0.8rem;
+}

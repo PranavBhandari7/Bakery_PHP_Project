@@ -1,7 +1,4 @@
-  <?php
-    session_start(); 
-  ?>
-  <nav class="navbar navbar-expand-xl navbar-dark fixed-top py-lg-0 px-xl-5 wow fadeIn" data-wow-delay="0.1s">
+<nav class="navbar navbar-expand-xl navbar-dark fixed-top py-lg-0 px-xl-5 wow fadeIn" data-wow-delay="0.1s">
         <a href="index.php" class="navbar-brand ms-4 ms-lg-0">
             <h1 class="text-primary m-0">Sweet Factory.Co</h1>
         </a>
@@ -14,13 +11,6 @@
                 <a href="about.php" class="nav-item nav-link">About</a>
                 <a href="service.php" class="nav-item nav-link">Services</a>
                 <a href="product.php" class="nav-item nav-link">Products</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="testimonial.php" class="dropdown-item">Testimonial</a>
-                        <a href="404.php" class="dropdown-item">404 Page</a>
-                    </div>
-                </div>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
                 <div class=" d-md-flex nav-item pt-4 ps-lg-3">
                     <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
@@ -49,9 +39,10 @@
                                 }
 
                                 else
-                                {
+                                { 
                                     echo "Hi" . " " . $_SESSION["email"] . " !";
                                 }
+                                
                             ?>
                         </small>
                     </div>

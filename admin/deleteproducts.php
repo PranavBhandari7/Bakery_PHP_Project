@@ -1,3 +1,4 @@
+<?php  require_once("includes/sessionstatus.php"); ?>
 <?php
 //including the database connection file
 include("includes/config.php");

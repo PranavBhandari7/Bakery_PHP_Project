@@ -1,21 +1,18 @@
 <?php
-    session_start();
-    require_once("include/config.php");
+    require_once("includes/config.php");
 
     // Declare the variables
     $email = $password = $confirm_password = $username = "";
     $email_err = $password_err = $confirm_password_err = $username_err = "";
 
     // Check if the user is already logged in
-    if(isset($_SESSION["email"]))
-    {
-        echo "<script>window.location.href='logoutpage.php';</script>";
-        exit;
-    }
+    // if(isset($_SESSION["email"]))
+    // {
+    //     echo "<script>window.location.href='logoutpage.php';</script>";
+    //     exit;
+    // }
 
-    // Check if the request method is post
-    else if(!isset($_SESSION["email"]))
-    {
+
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
     
@@ -45,7 +42,7 @@
             {  
                 $email = validate($_POST["email"]);
     
-                $sql = "SELECT * FROM users WHERE email='$email'";
+                $sql = "SELECT * FROM admin WHERE email='$email'";
     
                 $query = mysqli_query($conn,$sql);
     
@@ -97,7 +94,7 @@
             {
     
                 // Create the INSERT statement
-                $sql = "INSERT INTO users (username, email, password) VALUES (? , ? , ?)";
+                $sql = "INSERT INTO admin (username, email, password) VALUES (? , ? , ?)";
     
                 // After the statement is created then use the prepare the statement
                 $stmt = mysqli_prepare($conn,$sql);
@@ -126,7 +123,7 @@
             }
                 mysqli_close($conn);
         }
-    } 
+     
 
 ?>
 
@@ -134,23 +131,10 @@
 <html lang="en">
 
 <!-- Head -->
-<?php include('include/head.php') ?>
+<?php include('includes/adminHead.php') ?>
 <!-- End Head -->
 
 <body>
-    <!-- Spinner Start -->
-    <?php include('include/spinner.php') ?>
-    <!-- Spinner End -->
-
-
-    <!-- Topbar Start -->
-    <?php include('include/topbar.php') ?>
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    <?php include('include/navbar.php')?>
-    <!-- Navbar End -->
 
     <!-- Registration form start -->
     <div class="container register_form">
@@ -208,23 +192,12 @@
     </div>
     <!-- Registration form end -->
 
-    <!-- Footer Start -->
-    <?php include('include/footer.php') ?>
-    <!-- Footer End -->
-
-
-    <!-- Copyright Start -->
-    <?php include('include/copyright.php') ?>
-    <!-- Copyright End -->
-
-
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-
-    <!-- JavaScript Libraries -->
-    <?php include('include/js.php') ?>
-    <!-- End JavaScript Libraries -->
+    <!-- Vendor JS Files -->
+    <?php include('includes/js.php') ?>
+    <!-- End Vendor JS Files -->
 
 </body>
 

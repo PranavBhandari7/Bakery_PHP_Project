@@ -1,4 +1,5 @@
 <?php
+    require_once("includes/sessionstatus.php");
     include("includes/config.php");
     $id = $_GET["id"];
     $query = "SELECT * FROM products WHERE product_id = $id";
