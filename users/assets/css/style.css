@@ -469,10 +469,21 @@ h6,
     font-size: 3rem;
 }
 
+.productImage{
+    width:530px;
+}
+
+@media screen and (min-width:764px) and (max-width: 1199px){
+    .productImage{
+      width: 400px;
+    }
+}
+
 .quantity{
-    border-radius: 10px;
-    border-color: black;
-    color: black;
+    background-color: white !important; 
+    width: 500px;
+    border-radius: 7px;
+    padding: 7px;
 }
 
 .product-heading{

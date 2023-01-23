@@ -185,7 +185,7 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" 
                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                   <div class="accordion-body">
-                    
+                    <div class="container">
                     <table class="table table-bordered text-center">
                       <thead class="bg-primary text-light">
                         <tr>
@@ -215,6 +215,7 @@
                         ?>
                       </tbody>
                     </table>
+                    </div>
                   </div>
                 </div>
               </div>

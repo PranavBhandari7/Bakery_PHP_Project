@@ -1,4 +1,169 @@
-<?php  require_once("includes/sessionstatus.php"); ?>
+<?php  
+    require_once("includes/sessionstatus.php"); 
+    include("includes/config.php");
+
+   // Declare the variables
+   $name = $price = $description = $image = $category = "";
+   $name_err = $price_err = $description_err = $image_err = $category_err = "";
+
+   // Check if the request method is post
+   if($_SERVER["REQUEST_METHOD"] == "POST")
+   {
+
+       function validate($data)
+       {
+
+           $data = trim($data);
+       
+           $data = stripslashes($data);
+       
+           $data = htmlspecialchars($data);
+       
+           return $data;
+       }
+
+       if(empty($_POST["name"]))
+       {
+           $name_err = "Please choose product name";
+       }
+
+       else 
+       {  
+           $name = validate($_POST["name"]);
+
+           $sql = "SELECT * FROM products WHERE product_name ='$name'";
+
+           $query = mysqli_query($conn,$sql);
+
+           if (mysqli_num_rows($query) > 0) 
+           {               
+               $name_err = "Product name already exists";
+           }
+       }
+
+       if(empty($_POST["price"]))
+       {
+           $price_err = "Price field cannot be empty";
+       }
+
+       else
+       {
+           $price = validate($_POST["price"]);
+       }
+
+       if (empty($_POST["description"])) 
+       {
+           $description_err = "Product description cannot be empty";
+       }
+
+       else
+       {
+           $description = validate($_POST["description"]);
+       }
+
+       if (empty($_POST["category"])) 
+       {
+           $category_err = "Product category cannot be empty";
+       }
+
+       else
+       {
+           $category = validate($_POST["category"]);
+       }
+
+       $isImageEmpty = false;
+
+       if (empty($_FILES["old_image"]["name"])) 
+        {
+            // if(empty($_FILES["old_image"]["name"]))
+            // {
+            //     $image_err = "Please upload the image of the product";
+            // }
+            $isImageEmpty = true;
+        }
+
+        else
+        {
+            $image = $_FILES["old_image"]["name"];
+            $tempname = $_FILES["old_image"]["tmp_name"];
+            $isImageEmpty = false;
+        }
+
+        if(empty($_FILES["image"]["name"]) && $isImageEmpty == true)
+        {
+            $image_err = "Please upload the image of the product";
+            $isImageEmpty = true;
+        }
+
+        else
+        {
+            $image = $_FILES["image"]["name"];
+            $tempname = $_FILES["image"]["tmp_name"];
+            $isImageEmpty = false;
+        }
+
+        if($isImageEmpty == false && $image == $_FILES["image"]["name"])
+        {
+            $target_dir = "/Users/pranavbhandari/Documents/GitHub/Bakery_PHP_Project/backendImages/";
+            $target_file = $target_dir . basename($image);
+    
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+            $check = getimagesize($tempname);
+    
+            if ($check == false) 
+            {
+                $image_err =  "File is not an image.";
+            } 
+    
+            else if (file_exists($target_file)) 
+            {
+                $image_err =  "Sorry, file already exists. Please select another file";
+            }
+            else if ($_FILES["image"]["size"] > 5000000) 
+            {
+                $image_err =  "Sorry, your file is too large.";
+            }
+            else if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") 
+            {
+                $image_err =  "Sorry, only JPG, JPEG, PNG files are allowed.";
+            }
+        
+            else
+            {
+                if (move_uploaded_file($tempname, $target_file)) 
+                {
+                    $image_err = "";
+                } 
+                else 
+                {
+                    $image_err =  "Sorry, there was an error uploading your file.";
+                }
+            }
+        }
+
+        if(empty($name_err) && empty($price_err) 
+        && empty($description_err) && empty($image_err) && empty($category_err))
+        {
+        //  Create the INSERT statement
+            $sql = "UPDATE  `products` (`product_name`, `pro_des`, `pro_image`, `pro_price`, `category_id`) 
+            SET product_name = $name, pro_des = $description, pro_image = $image, 
+            pro_price = $price, category_id = $category WHERE product_id = $id";
+
+            $query = mysqli_query($conn,$sql);
+
+            if($query)
+            {
+                echo "<script>window.location.href='products.php';</script>";
+            }
+            else
+            {
+                echo "Something went wrong... cannot redirect";
+            }
+        
+        }
+        mysqli_close($conn);
+   }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +185,10 @@
         <?php
         include("includes/config.php");
         $id = $_GET["id"];
-        $query = "SELECT * FROM products WHERE product_id = $id";
+        $query = "SELECT products.product_name, products.pro_price,
+        products.pro_des, products.pro_image, categories.category_name,
+        products.category_id FROM products INNER JOIN categories ON 
+        products.category_id = categories.category_id WHERE product_id = $id";
         $passQuery = mysqli_query($conn, $query);
         if ($passQuery) 
         {
@@ -31,6 +199,8 @@
                 $productPrice = $row["pro_price"];
                 $productDescription = $row["pro_des"];
                 $productImage = $row["pro_image"];
+                $productCategory = $row["category_id"];
+                $categoryName = $row["category_name"];
             }
         }
         ?>
@@ -58,7 +228,7 @@
                         <label for="productid" class="form-label">Product Name:</label>
                         <input type="text" class="form-control order-input form-group"
                         value="<?php echo $productName; ?>" id="productid" name="name">
-                        <!-- <span class="error">* <?php echo $product_name_err;?></span> -->
+                        <span class="error">* <?php echo $name_err;?></span>
                     </div>
 
                     <div class="col-md-6">
@@ -66,30 +236,48 @@
                         <input type="text" class="form-control order-input form-group" 
                         placeholder="Enter your gmail" name="price" 
                         value="<?php echo $productPrice; ?>" id="productprice">
-                        <!-- <span class="error">* <?php echo $product_price_err;?></span> -->
+                        <span class="error">* <?php echo $price_err;?></span>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="productdescription" class="form-label">Product Description:</label>
                         <textarea type="text" class="form-control order-input form-group" id="productdescription"
                         name="description"><?php echo $productDescription;?></textarea>
-                    <!-- <span class="error">* <?php echo $product_description_err;?></span> -->
+                    <span class="error">* <?php echo $description_err;?></span>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label for="category-type" class="form-label">Category</label>
+                        <select class="me-2 form-control" name="category">
+                                <option value="<?php echo $productCategory;?>"><?php echo $categoryName;?></option>
+                                <?php
+                                    $query = "SELECT * from categories";
+                                    $passQuery = mysqli_query($conn, $query);
+                                    if ($passQuery->num_rows > 0)
+                                    {
+                                        while ($rows = $passQuery->fetch_assoc())
+                                        {
+                                            echo" <option value='$rows[category_id]'>$rows[category_name]</option>";
+                                        }
+                                    }
+                                ?>
+                        </select>
+                        <span class="error">* <?php echo $category_err;?></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <img src="/backendImages/<?php echo $productImage?>" width="400px" alt="">
+                    </div>
+                    <div class="col-md-6">
                         <label for="productimage" class="form-label">Product Image:</label>
                         <input type="file" class="form-control order-input form-group" 
-                        id="productimage" name="image">
+                        id="productimage" name="image" value="">
+                        
                         <input type="hidden" class="form-control order-input form-group" id="productimage"
-                        name="old_image" value="<?php echo $productimage;?>">
-                        <!-- <span class="error">* <?php echo $product_image_err;?></span> -->
+                        name="old_image" value="<?php echo $productImage;?>">
+                        <span class="error">* <?php echo $image_err;?></span>
                     </div>
 
-                    <!-- <div class="col-md-12">
-                        <img src="/backendImages/<?php echo $productImage ?>" width="120" height="120">                      
-                        <a href="editimage.php?id=<?php echo $row['product_id'];?>" target='_blank'>
-                        Change Image</a>
-                    </div> -->
 
                     <div class="col-sm-12 text-center">
                         <button type="submit" class="btn btn-outline-success" name="submit">Apply Changes</button>
@@ -108,126 +296,3 @@
 
 </body>
 </html>
-<?php
-    include("includes/config.php");
-
-    // Declare the variables
-    $product_name = $product_price = $product_description = $product_image = "";
-    $product_name_err = $product_price_err = $product_description_err = $product_image_err = "";
-
-    // Check if the request method is post
-    if(isset($_POST["submit"]) == "POST")
-    {
-
-        function validate($data)
-        {
-
-            $data = trim($data);
-        
-            $data = stripslashes($data);
-        
-            $data = htmlspecialchars($data);
-        
-            return $data;
-        }
-
-        if(empty($_POST["product_name"]))
-        {
-            $product_name_err = "Please choose product name";
-        }
-
-        else if(isset($_POST["product_name"]))
-        {  
-            $product_name = validate($_POST["product_name"]);
-        }
-
-        if(empty($_POST["product_price"]))
-        {
-            $product_price_err = "Price field cannot be empty";
-        }
-
-        else if(isset($_POST["product_price"]))
-        {
-            $product_price = validate($_POST["product_price"]);
-        }
-
-        if (empty($_POST["product_description"])) 
-        {
-            $product_description_err = "Product description cannot be empty";
-        }
-
-        if(isset($_POST["product_description"]))
-        {
-            $product_price = validate($_POST["product_description"]);
-        }
-
-        $newImage = $_FILES["image"]["name"];
-        // $old_image = $_POST["image_old"];
-        $tempname = $_FILES["image"]["tmp_name"];
-
-        // if(empty($_FILES["image"]["name"]))
-        // {
-        //     $product_image = $old_image;
-        // }
-
-        if (isset($_FILES["image"]["name"])) 
-        {
-            $product_image = $newImage;
-            $product_imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            $check = getimagesize($tempname);
-            $target_dir = "/Users/pranavbhandari/Documents/GitHub/Bakery_PHP_Project/backendImages/";
-            $target_file = $target_dir . basename($product_image);
-
-            if ($check !== false) 
-            {
-                // "File is an image - " . $check["mime"] . ".";
-                $product_image_err = "";
-            } 
-
-            else 
-            {
-                $product_image_err =  "File is not an image.";
-            }
-
-            if (file_exists($target_file)) 
-            {
-                $product_image_err =  "Sorry, file already exists.";
-            }
-
-            if ($_FILES["image"]["size"] > 500000) 
-            {
-                $product_image_err =  "Sorry, your file is too large.";
-            }
-
-            if ($product_imageFileType != "jpg" && $product_imageFileType != "png" && $product_imageFileType != "jpeg") 
-            {
-                $product_image_err =  "Sorry, only JPG, JPEG, PNG files are allowed.";
-            }
-
-            else
-            {
-                if (move_uploaded_file($tempname, $target_file)) 
-                {
-                    echo  "The file " . htmlspecialchars(basename($product_image)) . " has been uploaded.";
-                    $product_image_err = "";
-                }   
-            }
-
-            if(empty($product_name_err) && empty($product_price_err) 
-            && empty($product_description_err) && empty($product_image_err))
-            {
-                $sqlQuery = "UPDATE products SET product_name='$product_name', 
-                pro_des = '$product_description', pro_image = '$product_image', 
-                pro_price = '$product_price' where `product_id`=$id";
-
-                $result = mysqli_query($conn, $sqlQuery);
-                echo "<script>location.href='products.php'</script>";
-                if (!$result) 
-                {
-                    echo $conn->error;
-                }   
-            }
-        }   
-    }
-    $conn->close();
-?>

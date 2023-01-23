@@ -24,45 +24,62 @@
     <!-- Navbar End -->
 
     <!-- Add to cart start -->
-    <main style="margin:10rem">
-        <div class="container-fluid">
+    <main style="margin:21rem 0rem">
+        <div class="container">
             <div class="row">
-                <div class="col-5">
-                    <img src="assets/img/product-1.jpg" class="img-fluid" alt="">
-                    <div class="mt-3 text-center">
-                        <label for="qauntity">Qauntity</label>
-                        <select class="form-label quantity py-2 px-2 ms-2" id="quantity">
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                            <option value="">4</option>
-                            <option value="">5</option>
-                            <option value="">6</option>
-                            <option value="">7</option>
-                            <option value="">8</option>
-                            <option value="">9</option>
-                            <option value="">10</option>
-                        </select>                       
-                    </div>
-                    <div class="mt-3 text-center">
-                        <button class="btn btn-outline-success">Add to cart</button>
-                        <button class="btn btn-outline-warning ms-2">Add to wishlist</button>
-                        <button class="btn btn-outline-primary ms-2">Place Order</button>
-                    </div>
+                <?php
+                    include("include/config.php");
+                    $id = $_GET["id"];
+                    $query = "SELECT * FROM products WHERE product_id = $id";
+                    $result = mysqli_query($conn, $query);
+                    if ($result) 
+                    {
+                        if ($result->num_rows > 0) 
+                        {
+                            $row = $result->fetch_assoc();
+                            $productName = $row["product_name"];
+                            $productPrice = $row["pro_price"];
+                            $productDescription = $row["pro_des"];
+                            $productImage = $row["pro_image"];
+                        }
+                    }
+                ?>
+                <div class="col-6">
+                    <img src="/backendImages/<?php echo $productImage ?>" class="productImage" alt="">
                 </div>
-                <div class="col-7">
+                <div class="col-6">
                     <div>
-                        <h5 class="product-heading">Product 1</h5>
+                        <h5 class="product-heading"><?php echo $productName ?></h5>
                         <label for="star-rating">Ratings</label>
                         <button disabled="disabled" class="btn btn-success ratings" 
                         id="star-rating">4.8</button>
-                        <p class="amount">₹5.68</p>
+                        <p class="amount">₹<?php echo $productPrice ?></p>
                         <p style="font-size: 13px; margin-top:-1.2rem">Inclusive of all taxes</p>
                     </div>
                     <div>
                         <h4>Description</h4>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque sed ducimus odit similique asperiores rem quia in 
-                        voluptatem officiis pariatur natus nisi consectetur suscipit, enim nostrum ipsam deleniti fugit ad.</p>
+                        <p><?php echo $productDescription ?></p>
+                    </div>
+                    <div>
+                        <div class="mt-3">
+                            <select class="quantity" id="quantity">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                                <option value="">6</option>
+                                <option value="">7</option>
+                                <option value="">8</option>
+                                <option value="">9</option>
+                                <option value="">10</option>
+                            </select>                       
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-outline-success">Add to cart</button>
+                            <button class="btn btn-outline-warning ms-2">Add to wishlist</button>
+                            <button class="btn btn-outline-primary ms-2">Place Order</button>
+                        </div>
                     </div>
                 </div>
             </div>

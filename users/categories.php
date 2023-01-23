@@ -39,7 +39,7 @@
                 <?php
                     include("include/config.php");
                     $id = $_GET["id"];
-                    $query = "SELECT pro_image, product_name, pro_price FROM products 
+                    $query = "SELECT product_id, pro_image, product_name, pro_price FROM products 
                     INNER JOIN categories ON products.category_id = categories.category_id 
                     WHERE categories.category_id = $id";
                     $result = mysqli_query($conn, $query);
@@ -54,7 +54,7 @@
                                             <div class='card-body text-center'>
                                                 <h5>$rows[product_name]</h5>
                                                 <p class='mt-4' style='display:inline-block'>₹$rows[pro_price]</p>
-                                                <a href='details.php' target='_blank' class='btn btn-outline-warning ms-xl-5 ms-sm-3'>Add</a>
+                                                <a href='details.php?id=$rows[product_id]' target='_blank' class='btn btn-outline-warning ms-xl-5 ms-sm-3'>Add</a>
                                             </div>
                                         </div>
                                     </div>";
