@@ -21,7 +21,7 @@
       </li>
       <li>
         <a href="feedbacks.php">
-          <i class="bi bi-circle"></i><span>Customers Feedbacks</span>
+          <i class="bi bi-circle"></i><span>Customers Feedback</span>
         </a>
       </li>
       <li>
@@ -38,13 +38,13 @@
     </a>
     <ul id="categories-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="addcategories.php">
+        <a href="categories.php">
           <i class="bi bi-circle"></i><span>Manage Categories</span>
         </a>
       </li>
       <li>
-        <a href="categories.php">
-          <i class="bi bi-circle"></i><span>All Categories</span>
+        <a href="addcategories.php">
+          <i class="bi bi-circle"></i><span>Add Categories</span>
         </a>
       </li>
     </ul>

@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead class="bg-primary text-light">
                 <tr>
                     <th scope="col">ID</th>
@@ -32,13 +32,17 @@
                     <th scope="col">Product Price</th>
                     <th scope="col">Product Description</th>
                     <th scope="col">Product Image</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Other Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                     include("includes/config.php");
-                    $query = "SELECT * from products";
+                    $query = "SELECT products.product_id, products.product_name, 
+                    products.pro_price, products.pro_des, products.pro_image, products.status, categories.category_name
+                    from products INNER JOIN categories ON products.category_id = categories.category_id";
                     $passQuery = mysqli_query($conn, $query);
                     if ($passQuery->num_rows > 0)
                     {
@@ -49,7 +53,9 @@
                                     <td>$rows[product_name]</td>
                                     <td>₹$rows[pro_price]</td>
                                     <td>$rows[pro_des]</td>
-                                    <td class='text-center'><img src='/backendImages/$rows[pro_image]' height='98px'></td>
+                                    <td class='text-center'><img src='/backendImages/$rows[pro_image]' width='70px'></td>
+                                    <td>$rows[category_name]</td>
+                                    <td>$rows[status]</td>
                                     <td class='text-center'>
                                         <a href='showproducts.php?id=$rows[product_id]' class='btn btn-outline-primary me-2'>Show</a>
 

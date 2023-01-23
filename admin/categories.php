@@ -34,28 +34,32 @@
                     include("includes/config.php");
                     $query = "SELECT * from categories";
                     $passQuery = mysqli_query($conn, $query);
-                    if ($passQuery->num_rows > 0){
-                        while ($rows = $passQuery->fetch_assoc()){
-                        echo "<tr>
-                                <td>$rows[category_id]</td>
-                                <td>$rows[category_name]</td>
-                                <td></td>
-                                <td>
-                                    <a href='showcategories.php?id=$rows[category_id]' class='btn btn-outline-primary me-2'>Show</a>
+                    if ($passQuery->num_rows > 0)
+                    {
+                        while ($rows = $passQuery->fetch_assoc())
+                        {
+                            echo "<tr>
+                                    <td>$rows[category_id]</td>
+                                    <td>$rows[category_name]</td>
+                                    <td class='text-center'><img src='/categoryImages/$rows[category_image]' width='70px'></td>
+                                    <td>
+                                        <a href='showcategories.php?id=$rows[category_id]' 
+                                        class='btn btn-outline-primary me-2'>Show</a>
 
-                                    <a href='editcategories.php?id=$rows[category_id]' target='_blank'>
-                                    <button type='submit' class='btn btn-outline-success me-2' name='edit'>
-                                    Edit</button></a>
+                                        <a href='editcategories.php?id=$rows[category_id]' target='_blank'>
+                                        <button type='submit' class='btn btn-outline-success me-2' name='edit'>
+                                        Edit</button></a>
 
-                                    <a href='.php?id=$rows[category_id]' onclick='return checkDelete()'>
-                                    <button type='submit' class='btn btn-outline-danger' name='delete'>
-                                    Delete</button></a>
-                                </td>
-                            </tr>";
+                                        <a href='deletecategories.php?id=$rows[category_id]' onclick='return checkDelete()'>
+                                        <button type='submit' class='btn btn-outline-danger' name='delete'>
+                                        Delete</button></a>
+                                    </td>
+                                </tr>";
                         }
                     }
 
-                    else {
+                    else 
+                    {
                         $conn->error;
                     }
                 ?>

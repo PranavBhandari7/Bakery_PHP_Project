@@ -1,5 +1,5 @@
-<?php  require_once("includes/sessionstatus.php"); ?>
 <?php
+    require_once("includes/sessionstatus.php"); 
     require_once("includes/config.php");
 
     // Declare the variables
@@ -59,6 +59,16 @@
             $description = validate($_POST["description"]);
         }
 
+        if (empty($_POST["category"])) 
+        {
+            $category_err = "Product category cannot be empty";
+        }
+
+        else
+        {
+            $category = validate($_POST["category"]);
+        }
+
         if (empty($_FILES["image"]["name"])) 
         {
             $image_err = "Please upload the image of the product";
@@ -109,8 +119,8 @@
             && empty($description_err) && empty($image_err) && empty($category_err))
         {
             // Create the INSERT statement
-            $sql = "INSERT INTO  `products` (`product_name`, `pro_des`, `pro_image`, `pro_price`) 
-            VALUES ('$name' , '$description' , '$image' , '$price')";
+            $sql = "INSERT INTO  `products` (`product_name`, `pro_des`, `pro_image`, `pro_price`, `category_id`) 
+            VALUES ('$name' , '$description' , '$image' , '$price', '$category')";
 
             $query = mysqli_query($conn,$sql);
 
@@ -174,21 +184,17 @@
                 <select class="me-2 form-control" name="category">
                         <option value="">Select Category</option>
                         <?php
-                            $query = "SELECT * from products";
+                            $query = "SELECT * from categories";
                             $passQuery = mysqli_query($conn, $query);
                             if ($passQuery->num_rows > 0)
                             {
                                 while ($rows = $passQuery->fetch_assoc())
                                 {
-                                    echo"
-                                    <option value=''>Preparing</option>
-                                    <option value=''>Delivered</option>
-                                    <option value=''>Cancelled</option>
-                                    <option value=''>Rejected</option>";
+                                    echo" <option value='$rows[category_id]'>$rows[category_name]</option>";
                                 }
                             }
                         ?>
-                    </select>
+                </select>
                 <span class="error">* <?php echo $category_err;?></span>
             </div>
 

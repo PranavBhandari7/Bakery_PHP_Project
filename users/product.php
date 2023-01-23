@@ -56,7 +56,7 @@
                                             <span>Hover on the image to explore our categories</span>
                                         </div>
                                         <div class='position-relative mt-auto'>
-                                            <img class='img-fluid' src='assets/img/product-1.jpg' alt=''>
+                                            <img class='' src='/categoryImages/$rows[category_image]' height='350px' alt=''>
                                             <div class='product-overlay'>
                                                 <a class='btn btn-lg-square btn-outline-light rounded-circle' href='categories.php?id=$rows[category_id]'>
                                                 <i class='fa fa-eye text-primary'></i></a>

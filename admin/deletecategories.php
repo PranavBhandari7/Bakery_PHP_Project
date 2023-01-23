@@ -7,8 +7,8 @@
     $id = $_GET['id'];
 
     //deleting the row from table
-    $result = mysqli_query($conn, "DELETE FROM products WHERE product_id=$id");
+    $result = mysqli_query($conn, "DELETE FROM categories WHERE category_id=$id");
 
     //redirecting to the display page (index.php in our case)
-    echo "<script>location.href='products.php'</script>";
+    echo "<script>location.href='categories.php'</script>";
 ?>
