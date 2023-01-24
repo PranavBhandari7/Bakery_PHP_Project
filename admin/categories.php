@@ -32,7 +32,7 @@
             <tbody>
                 <?php
                     include("includes/config.php");
-                    $query = "SELECT * from categories";
+                    $query = "SELECT * FROM categories";
                     $passQuery = mysqli_query($conn, $query);
                     if ($passQuery->num_rows > 0)
                     {
