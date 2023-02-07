@@ -53,8 +53,8 @@
                                             class='card-img-top img-fluid' style='height:130px' alt='...'>
                                             <div class='card-body text-center'>
                                                 <h5>$rows[product_name]</h5>
-                                                <p class='mt-4' style='display:inline-block'>₹$rows[pro_price]</p>
-                                                <a href='details.php?id=$rows[product_id]' target='_blank' class='btn btn-outline-warning ms-xl-5 ms-sm-3'>Add</a>
+                                                <p class='mt-4 text-dark'>₹$rows[pro_price]</p>
+                                                <a href='details.php?id=$rows[product_id]' target='_blank' class='btn btn-outline-warning d-block'>Add</a>
                                             </div>
                                         </div>
                                     </div>";

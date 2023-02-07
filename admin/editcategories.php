@@ -38,7 +38,7 @@
 
            if (mysqli_num_rows($query) > 0) 
             {               
-               $name_err = "Product name already exists";
+               $name_err = "Category name already exists";
             }
         }
 
@@ -51,7 +51,7 @@
         {
             $image = $_FILES["image"]["name"];
             $tempname = $_FILES["image"]["tmp_name"];
-            $target_dir = "/Users/pranavbhandari/Documents/GitHub/Bakery_PHP_Project/backendImages/";
+            $target_dir = "/Users/pranavbhandari/Documents/GitHub/Bakery_PHP_Project/categoryImages/";
             $target_file = $target_dir . basename($image);
     
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -82,6 +82,7 @@
                 if (move_uploaded_file($tempname, $target_file)) 
                 {
                     $image_err = "";
+                    unlink($target_dir.'/'.$_POST["old_image"]);
                 } 
                 else 
                 {

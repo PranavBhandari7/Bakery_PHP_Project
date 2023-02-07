@@ -2,17 +2,22 @@
     require_once("includes/sessionstatus.php");
     include("includes/config.php");
     $id = $_GET["id"];
-    $query = "SELECT * FROM products WHERE product_id = $id";
+    $query = "SELECT products.product_id, products.product_name, products.pro_price, products.pro_des,
+    products.pro_image, categories.category_name, products.status FROM products 
+    INNER JOIN categories ON categories.category_id = products.category_id WHERE product_id = $id";
     $passQuery = mysqli_query($conn, $query);
     if ($passQuery) 
     {
         if ($passQuery->num_rows > 0) 
         {
             $row = $passQuery->fetch_assoc();
+            $productId= $row["product_id"];
             $productName = $row["product_name"];
             $productPrice = $row["pro_price"];
             $productDescription = $row["pro_des"];
             $productImage = $row["pro_image"];
+            $status = $row["status"];
+            $categoryName = $row["category_name"];
         }
     }
 
@@ -36,22 +41,27 @@
 
     <!-- Main Content -->
     <main id="main" class="main">
-        <div class="text-center mb-4">
-            <div class="row">
-                <div class="col-md-6 text-center">
-                    <h2>Products data</h2>
-                </div>
-                <div class="col-md-6">
-                    <a href="products.php" class="btn btn-success">Back</a>
+        <div class="container">
+            <div class="mb-4">
+                <div class="row">
+                    <div class="col-md-6 text-md-start text-center">
+                        <h2>Products data</h2>
+                    </div>
+                    <div class="col-md-6 text-md-end text-center">
+                        <a href="products.php" class="btn btn-success">Back</a>
+                    </div>
                 </div>
             </div>
+            <div class="text-sm-start text-center">
+                <p class="mt-2"><strong class="me-2">Product ID:</strong><?php echo $productId?></p>
+                <p class="mt-2"><strong class="me-2">Product Name:</strong><?php echo $productName?></p>
+                <p class="mt-2"><strong class="me-2">Product Price:</strong>₹<?php echo $productPrice?></p>
+                <p class="mt-2"><strong class="me-2">Product Description:</strong><?php echo $productDescription?></p>
+                <p class="mt-2"><strong class="me-2">Product Image:</strong><img height='100px' src="/backendImages/<?php echo $productImage?>" alt=""></p>
+                <p class="mt-2"><strong class="me-2">Category Name:</strong><?php echo $categoryName?></p>
+                <p class="mt-2"><strong class="me-2">Status:</strong><?php echo $status?></p>
+            </div>
         </div>
-        <ul>
-            <li><strong class="me-2">Product Name:</strong><?php echo $productName?></li>
-            <li class="mt-2"><strong class="me-2">Product Price::</strong><?php echo $productPrice?></li>
-            <li class="mt-2"><strong class="me-2">Product Description:</strong><?php echo $productDescription?></li>
-            <li class="mt-2"><strong class="me-2">Product Image:</strong><img height='100px' src="assets/img/<?php echo $productImage?>" alt=""></li>
-        </ul>
     </main>
     <!-- End Main Content -->
     

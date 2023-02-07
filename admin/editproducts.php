@@ -112,6 +112,7 @@
                 if (move_uploaded_file($tempname, $target_file)) 
                 {
                     $image_err = "";
+                    unlink($target_dir.'/'.$_POST["old_image"]);
                 } 
                 else 
                 {
@@ -249,7 +250,7 @@
                         <input type="file" class="form-control order-input form-group" 
                         id="productimage" name="image">
                         
-                        <input type="text" class="form-control order-input form-group" id="productimage"
+                        <input type="hidden" class="form-control order-input form-group" id="productimage"
                         name="old_image" value="<?php echo $productImage;?>">
                         <span class="error">* <?php echo $image_err;?></span>
                         <div class="text-center">

@@ -467,10 +467,15 @@ h6,
 .amount{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 3rem;
+    color: #111111;
 }
 
 .productImage{
     width:530px;
+}
+
+.itemImage{
+    width:70px;
 }
 
 @media screen and (min-width:764px) and (max-width: 1199px){
@@ -481,9 +486,17 @@ h6,
 
 .quantity{
     background-color: white !important; 
-    width: 500px;
+    /* width: 500px; */
     border-radius: 7px;
     padding: 7px;
+}
+
+.iquantity{
+    width:70px; height:38px; border-radius:10px
+}
+
+.iweight{
+    width:70px; height:38px; border-radius:10px
 }
 
 .product-heading{

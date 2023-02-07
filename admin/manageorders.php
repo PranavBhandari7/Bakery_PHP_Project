@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-6 text-md-end text-center">
                 <form action="" method="POST">
-                    <select class="btn btn-outline-primary me-2" name="oders">
+                    <select class="btn btn-outline-primary me-2" name="orders">
                         <option value="">Select Status</option>
                         <option value="">Preparing</option>
                         <option value="">Delivered</option>
@@ -45,7 +45,7 @@
                 </form>
             </div>
         </div>
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead class="bg-primary text-light">
                 <tr>
                     <th scope="col">ID</th>
@@ -53,6 +53,7 @@
                     <th scope="col">User_id</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Order_date</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,10 +66,21 @@
                         while ($rows = $passQuery->fetch_assoc()){
                         echo "<tr>
                                 <td>$rows[order_id]</td>
-                                <td>$rows[Product_id]</td>
-                                <td>$rows[User_id]</td>
-                                <td>$rows[amount]</td>
+                                <td>$rows[product_id]</td>
+                                <td>$rows[user_id]</td>
+                                <td>₹$rows[amount]</td>
                                 <td>$rows[order_date]</td>
+                                <td>
+                                    <form action='method='POST'>
+                                        <select class='btn btn-outline-primary me-2' name='orders'>
+                                            <option value=''>Select Status</option>
+                                            <option value=''>Preparing</option>
+                                            <option value=''>Delivered</option>
+                                            <option value=''>Cancelled</option>
+                                            <option value=''>Rejected</option>
+                                        </select>
+                                    </form>
+                                </td>
                             </tr>";
                         }
                     }

@@ -10,18 +10,34 @@
                 <a href="index.php" class="nav-item nav-link active">Home</a>
                 <a href="about.php" class="nav-item nav-link">About</a>
                 <a href="service.php" class="nav-item nav-link">Services</a>
-                <a href="product.php" class="nav-item nav-link">Products</a>
+                <a href="products.php" class="nav-item nav-link">Products</a>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
+
                 <div class=" d-md-flex nav-item pt-4 ps-lg-3">
-                    <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
-                    <span class="icons ps-2 me-2" data-bs-toggle="tooltip" 
-                        data-bs-placement="bottom" title="Add to cart">
-                        <i class="fa-solid fa-cart-shopping text-light"></i>
-                    </span>
+                    <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle position-relative">
+                        <a href="mycart.php">
+                        <span class="icons ps-2 me-2" data-bs-toggle="tooltip" 
+                            data-bs-placement="bottom" title="Add to cart">
+                            <i class="fa-solid fa-cart-shopping text-light"></i>
+                            <?php
+                                if(!empty($_SESSION["shopping_cart"]))
+                                {
+                                    $items = count($_SESSION["shopping_cart"]);
+                                    echo "<span class='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary'>
+                                    $items</span>";
+                                }
+                                else
+                                {
+                                    echo "<span class='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger'>
+                                    0</span>";
+                                }
+                            ?>
+                        </span>
+                        </a>
                     </div>
                 </div>
 
-                <div class=" d-md-flex nav-item pt-4 ps-lg-3">
+                <div class="d-md-flex nav-item pt-4 ps-lg-3">
                     <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">
                         <a href="register.php">
                         <span class="icons ps-2 me-2" data-bs-toggle="tooltip" 
@@ -39,10 +55,12 @@
                                 }
 
                                 else
-                                { 
+                                {
+                                    // include("include/config.php");
+                                    // $query = `SELECT username FROM users WHERE email = '$_SESSION["email"]'`;
+                                    // $result = mysqli_query($conn, $query);
                                     echo "Hi" . " " . $_SESSION["email"] . " !";
-                                }
-                                
+                                }                              
                             ?>
                         </small>
                     </div>

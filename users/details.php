@@ -25,9 +25,8 @@
 
     <!-- Add to cart start -->
     <main style="margin:21rem 0rem">
-        <div class="container">
-            <div class="row">
-                <?php
+        <div class="container">            
+            <?php
                     include("include/config.php");
                     $id = $_GET["id"];
                     $query = "SELECT * FROM products WHERE product_id = $id";
@@ -43,46 +42,60 @@
                             $productImage = $row["pro_image"];
                         }
                     }
-                ?>
-                <div class="col-6">
-                    <img src="/backendImages/<?php echo $productImage ?>" class="productImage" alt="">
-                </div>
-                <div class="col-6">
-                    <div>
-                        <h5 class="product-heading"><?php echo $productName ?></h5>
-                        <label for="star-rating">Ratings</label>
-                        <button disabled="disabled" class="btn btn-success ratings" 
-                        id="star-rating">4.8</button>
-                        <p class="amount">₹<?php echo $productPrice ?></p>
-                        <p style="font-size: 13px; margin-top:-1.2rem">Inclusive of all taxes</p>
-                    </div>
-                    <div>
-                        <h4>Description</h4>
-                        <p><?php echo $productDescription ?></p>
-                    </div>
-                    <div>
-                        <div class="mt-3">
-                            <select class="quantity" id="quantity">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                                <option value="">5</option>
-                                <option value="">6</option>
-                                <option value="">7</option>
-                                <option value="">8</option>
-                                <option value="">9</option>
-                                <option value="">10</option>
-                            </select>                       
+            ?>
+            <form action="mycart.php?id=<?php echo $id ?>" method="post">
+                    <div class="row">
+                        <div class="col-lg-6 text-lg-start text-center">
+                            <img src="/backendImages/<?php echo $productImage ?>" class="productImage" alt="">
                         </div>
-                        <div class="mt-3">
-                            <button class="btn btn-outline-success">Add to cart</button>
-                            <button class="btn btn-outline-warning ms-2">Add to wishlist</button>
-                            <button class="btn btn-outline-primary ms-2">Place Order</button>
+
+                        <div class="col-lg-6 text-lg-start text-center">
+                            <div> 
+                                <h5 class="product-heading"><?php echo $productName ?></h5>
+                                <p class="amount">₹<?php echo $productPrice ?>/<span style="font-size:2rem">Kg</span></p>
+                                <p class="text-dark" style="font-size: 14px; margin-top:-1.2rem">Inclusive of all taxes</p>
+                            </div>
+                            <div>
+                                <h4>Description</h4>
+                                <p class="text-dark"><?php echo $productDescription ?></p>
+                            </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4>Weight</h4>
+                                        <div class="mt-3">
+                                            <select class="quantity form-control" id="quantity" name="weight">
+                                                <option value="1">1 Kg</option>
+                                                <option value="2">2 Kg</option>
+                                                <option value="3">3 Kg</option>
+                                                <option value="4">4 Kg</option>
+                                                <option value="5">5 Kg</option>
+                                                <option value="6">6 Kg</option>
+                                                <option value="7">7 Kg</option>
+                                                <option value="8">8 Kg</option>
+                                                <option value="9">9 Kg</option>
+                                                <option value="10">10 Kg</option>
+                                            </select>                      
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4>Quantity</h4>
+                                        <div class="mt-3">
+                                            <input type="number" min="1" max="10" name="product_quantity" class="form-control" value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="product_image" value="<?php echo $productImage; ?>">
+                                <input type="hidden" name="product_name" value="<?php echo $productName; ?>">
+                                <input type="hidden" name="product_price" value="<?php echo $productPrice; ?>">
+
+                                <div class="mt-3 text-center">
+                                    <button class="btn btn-outline-success" type="submit"
+                                    name="mycart">Add to cart</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+            </form>
         </div>
     </main>
     <!-- Add to cart end -->
