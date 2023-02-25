@@ -21,15 +21,22 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <span class="d-none d-md-block dropdown-toggle ps-2">
             <?php
-                if(!isset($_SESSION["loggedin"]) == "admin@gmail.com")
+                if(isset($_SESSION["admin_loggedin"]))
                 {
-                    echo "Hi Admin!";
-                }
-
-                else if (isset($_SESSION["email"]) == "admin@gmail.com")
+                    include("includes/config.php");
+                    $email = $_SESSION["admin_email"];                 
+                    $get_username = "SELECT username FROM admin where email = '$email'";
+                    $result = mysqli_query($conn,$get_username);
+                    if ($result) 
                     {
-                        echo "Hi" . " " . $_SESSION["email"] . " !";
+                        if ($result->num_rows > 0) 
+                        {
+                            $row = $result->fetch_assoc();
+                            $username = $row["username"];
+                        }
                     }
+                        echo "Hi" . " ". $username . " !";
+                }         
                 
             ?></span>
           </a><!-- End Profile Iamge Icon -->

@@ -1,6 +1,6 @@
 <?php
     // Start the session
-    if(!isset($_SESSION["email"]) == "admin@gmail.com")
+    if(!isset($_SESSION["admin_email"]))
     { 
         session_start();
     }
@@ -8,7 +8,7 @@
     require_once("includes/config.php");
 
     // Check if the user is already logged in
-    if(isset($_SESSION["email"]) == "admin@gmail.com")
+    if(isset($_SESSION["admin_email"]))
     {
         echo "<script>window.location.href='index.php';</script>";
         exit;
@@ -63,10 +63,10 @@
                         if(password_verify($password, $hashed_password))
                         {
                             // This means the password is correct Allow user to login
-                            session_start();
+                            // session_start();
                             $_SESSION["admin_id"] = $user_id;
-                            $_SESSION["email"] = $email;
-                            $_SESSION["loggedin"] = true;
+                            $_SESSION["admin_email"] = $email;
+                            $_SESSION["admin_loggedin"] = true;
 
                             echo "<script>window.location.href='index.php';</script>";
 

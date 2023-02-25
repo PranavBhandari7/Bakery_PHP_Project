@@ -26,11 +26,6 @@
                                     echo "<span class='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary'>
                                     $items</span>";
                                 }
-                                else
-                                {
-                                    echo "<span class='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger'>
-                                    0</span>";
-                                }
                             ?>
                         </span>
                         </a>
@@ -56,10 +51,19 @@
 
                                 else
                                 {
-                                    // include("include/config.php");
-                                    // $query = `SELECT username FROM users WHERE email = '$_SESSION["email"]'`;
-                                    // $result = mysqli_query($conn, $query);
-                                    echo "Hi" . " " . $_SESSION["email"] . " !";
+                                    include("include/config.php");
+                                    $email = $_SESSION["email"];                 
+                                    $get_username = "SELECT username FROM users where email = '$email'";
+                                    $result = mysqli_query($conn,$get_username);
+                                    if ($result) 
+                                    {
+                                        if ($result->num_rows > 0) 
+                                        {
+                                            $row = $result->fetch_assoc();
+                                            $username = $row["username"];
+                                        }
+                                    }
+                                        echo "Hi" . " ". $username . " !";
                                 }                              
                             ?>
                         </small>

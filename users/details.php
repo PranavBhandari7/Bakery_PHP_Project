@@ -63,7 +63,7 @@
                                     <div class="col-md-6">
                                         <h4>Weight</h4>
                                         <div class="mt-3">
-                                            <select class="quantity form-control" id="quantity" name="weight">
+                                            <select class="quantity form-control" id="quantity" name="product_weight">
                                                 <option value="1">1 Kg</option>
                                                 <option value="2">2 Kg</option>
                                                 <option value="3">3 Kg</option>

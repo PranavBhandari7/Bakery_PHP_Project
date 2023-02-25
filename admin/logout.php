@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if(isset($_SESSION["email"]) == "admin@gmail.com")
+  if(isset($_SESSION["admin_email"]))
   {
     session_unset();
     session_destroy();

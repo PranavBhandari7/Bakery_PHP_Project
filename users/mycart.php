@@ -1,37 +1,57 @@
 <?php
-       session_start();
-        if(isset($_POST["mycart"]))
+        session_start();
+        if(!isset($_SESSION["email"]))
         {
-            $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-            if(!in_array($_GET["id"], $item_array_id))
+                echo "<script>window.location.href='login.php';</script>";
+                exit;
+        }
+        if(isset($_POST["mycart"]))
+        {   
+            if(isset($_SESSION["shopping_cart"]))
             {
-                if(isset($_SESSION["shopping_cart"]))
+                $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+
+                if(!in_array($_GET["id"], $item_array_id))
                 {
                     $count = count($_SESSION["shopping_cart"]);
-                }
 
+                    $item_array = 
+                            array(
+                                'item_id'	    =>	$_GET["id"],
+                                'item_name'	    =>	$_POST["product_name"],
+                                'item_price'	=>	$_POST["product_price"],
+                                'mod_price'     =>  $_POST["product_price"],
+                                'item_weight'	=>	$_POST["product_weight"],
+                                'item_image'    =>  $_POST["product_image"],
+                                'item_quantity' =>  $_POST["product_quantity"]
+                            );
+                    $_SESSION["shopping_cart"][$count] = $item_array;
+                }
+                
                 else
                 {
-                    $count = 0;
+                    echo '<script>alert("Item Already Added in your cart")</script>';
                 }
+            }
+
+            else
+            {
+                $count = 0;
 
                 $item_array = 
                         array(
                             'item_id'	    =>	$_GET["id"],
                             'item_name'	    =>	$_POST["product_name"],
                             'item_price'	=>	$_POST["product_price"],
-                            'item_weight'	=>	$_POST["weight"],
+                            'mod_price'     =>  $_POST["product_price"],
+                            'item_weight'	=>	$_POST["product_weight"],
                             'item_image'    =>  $_POST["product_image"],
                             'item_quantity' =>  $_POST["product_quantity"]
                         );
                 $_SESSION["shopping_cart"][$count] = $item_array;
             }
-            
-            else
-            {
-                echo '<script>alert("Item Already Added in your cart")</script>';
-            }
         }
+        
 
         if(isset($_POST["removeitem"]))
         {
@@ -124,6 +144,7 @@
 
                             <td>
                                 <form action="mycart.php?id=<?php echo $values["item_id"];?>" method="post">
+                                
                                     <input type="number" value="<?php echo $values['item_weight'];?>" min="1" max="10"
                                     class="text-center border-success form-control iweight mx-auto" 
                                     onchange="this.form.submit()" name="modweight">
@@ -131,13 +152,12 @@
                             </td>
 
                             <td>
-                                <!-- <button class="btn btn-success" onclick="incrementvalue()">+</button> -->
                                 <form action="mycart.php?id=<?php echo $values["item_id"];?>" method="post">
+                                    <input type="hidden" class="itotal" name="modprice">
                                     <input type="number" value="<?php echo $values['item_quantity']?>" min="1" max="10" 
                                     class="text-center mx-auto border-success form-control iquantity" 
                                     onchange="this.form.submit()" name="modquantity">
                                 </form>
-                                <!-- <button class="btn btn-danger" onclick="decrementValue()">-</button> -->
                             </td>
 
                             <td>₹ <?php echo $values["item_price"];?>
@@ -156,16 +176,17 @@
                             }
                         ?>
                         <tr>
-                            <td colspan="6" align="right"><h4>Cart Total</h4></td>
-                            <td id = "gtotal" class="pt-2"></td>
+                            <td colspan="6" class="pt-2" align="right"><h3>Cart Total</h3></td>
+                            <td id = "gtotal" class="pt-3"></td>
                             <td>
-                                <button class="btn btn-success">Checkout</button>
+                                <a href="checkout.php" target="_blank">
+                                    <button class="btn btn-success">Checkout</button>
+                                </a>
                             </td>
                         </tr>
                         <?php
                         }
-                        ?>
-                            
+                        ?>                           
                     </table>
                 </div>
             </div>
@@ -196,30 +217,15 @@
     let itotal = document.getElementsByClassName("itotal");
     let gtotal = document.getElementById("gtotal");
 
-    // function incrementvalue()
-    // {
-    //     // for(let i = 0; i<iprice.length; i++)
-    //     // {   
-    //     //     value ++;
-    //     //     iquantity[i].value = value;
-    //     // }
-    //     // else
-    //     // {
-    //     //     alert("Quantity cannot be less than 1");
-    //     // }
-    // }
-
-    // incrementvalue();
-
     function subtotal()
     {
         let gt = 0;
         for(let i=0; i<iprice.length; i++)
         {
-            itotal[i].innerText = "₹ " + (iprice[i].value) * (iquantity[i].value) * (iweight[i].value);
+            itotal[i].innerText =  (iprice[i].value) * (iquantity[i].value) * (iweight[i].value);
             gt = gt + (iprice[i].value) * (iquantity[i].value) * (iweight[i].value)
         }
-        gtotal.innerText = "₹ " + gt;
+        gtotal.innerText =  gt;
     }
 
     subtotal();

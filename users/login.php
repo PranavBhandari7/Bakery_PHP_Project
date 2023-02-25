@@ -63,7 +63,6 @@
                         if(password_verify($password, $hashed_password))
                         {
                             // This means the password is correct Allow user to login
-                            session_start();
                             $_SESSION["id"] = $user_id;
                             $_SESSION["email"] = $email;
                             $_SESSION["loggedin"] = true;

@@ -74,6 +74,9 @@
     </a>
     <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
+        <a href="orders.php">
+          <i class="bi bi-circle"></i><span>Orders</span>
+        </a>
         <a href="manageorders.php">
           <i class="bi bi-circle"></i><span>Manage Orders</span>
         </a>
